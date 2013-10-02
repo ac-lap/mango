@@ -13,8 +13,8 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET		/login 						controllers.Application.login()
 POST    /login                      controllers.Application.authenticate()
 
-# Test
+# Signup
 
-GET		/test 						controllers.Application.test()
-POST    /user		                controllers.Application.newUser()
-POST    /user/:id/delete       		controllers.Application.deleteUser(id: String)
+GET		/signup 					controllers.Application.signup()
+POST    /signup		                controllers.Application.newUser()
+POST    /signup/:id/delete       	controllers.Application.deleteUser(id: String)

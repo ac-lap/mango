@@ -72,11 +72,6 @@ public class User extends Model
     	return user;
     }
 
-    public static void create(User user) 
-    {
-        user.save();
-    }
-
     public static List<User> all() 
     {
       return find.all();

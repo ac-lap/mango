@@ -1,0 +1,30 @@
+@(form: Form[Application.Signup])
+
+
+<html>
+    <head>
+        <title>LiBiL</title>
+    </head>
+    <body>
+        <header>
+            <a href="@routes.Application.index" id="logo"><span>Libil</span></a>
+        </header>
+
+        @helper.form(routes.Application.newUser()) {
+            
+            <h1>Sign up</h1>
+
+            <p>
+                <input type="email" name="email" placeholder="Email">
+            </p>
+            <p>
+                <input type="password" name="password" placeholder="Password">
+            </p>
+            <p>
+                <button type="submit">Signup</button>
+            </p>
+            
+        }
+    
+    </body>
+</html>
