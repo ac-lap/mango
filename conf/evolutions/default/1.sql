@@ -16,10 +16,6 @@ create table user (
   constraint pk_user primary key (user_id))
 ;
 
-create sequence account_details_seq;
-
-create sequence user_seq;
-
 alter table user add constraint fk_user_accDetails_1 foreign key (acc_details_user_id) references account_details (user_id) on delete restrict on update restrict;
 create index ix_user_accDetails_1 on user (acc_details_user_id);
 
@@ -27,15 +23,11 @@ create index ix_user_accDetails_1 on user (acc_details_user_id);
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists account_details;
+drop table account_details;
 
-drop table if exists user;
+drop table user;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists account_details_seq;
-
-drop sequence if exists user_seq;
+SET FOREIGN_KEY_CHECKS=1;
 

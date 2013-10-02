@@ -1,0 +1,53 @@
+
+# Users
+
+users:
+
+    - !!models.User
+        userId:     abc101
+        accDetails:
+            - !!models.AccountDetails
+                userId:     abc101
+    
+    - !!models.User
+        userId:     abc102
+        accDetails:
+            - !!models.AccountDetails
+                userId:     abc102
+    
+    - !!models.User
+        userId:     abc103
+        accDetails:
+            - !!models.AccountDetails
+                userId:     abc102
+    
+    - !!models.User
+        userId:     abc104
+        accDetails:
+            - !!models.AccountDetails
+                userId:     abc102
+    
+
+# AccountDetails
+
+accountDetails:
+
+    - !!models.AccountDetails
+        userId:     abc101
+        emailId:    anubhav@gmail.com
+        password:   secret
+    
+    - !!models.AccountDetails
+        userId:     abc102
+        emailId:    rashid@gmail.com
+        password:   secret
+    
+    - !!models.AccountDetails
+        userId:     abc103
+        emailId:    roshna@gmail.com
+        password:   secret
+    
+    - !!models.AccountDetails
+        userId:     abc104
+        emailId:    erwan@sample.com
+        password:   secret

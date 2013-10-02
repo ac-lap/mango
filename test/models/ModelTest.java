@@ -6,6 +6,11 @@ import static org.junit.Assert.*;
 import play.test.WithApplication;
 import static play.test.Helpers.*;
 
+import play.*;
+import play.libs.*;
+import com.avaje.ebean.Ebean;
+import java.util.*;
+
 public class ModelTest extends WithApplication {
     @Before
     public void setUp() {
@@ -15,10 +20,8 @@ public class ModelTest extends WithApplication {
     @Test
     public void createAndRetrieveUser() 
     {
-    	User.create("bob@gmail.com", "secret");
-        //User bob = User.find.where().eq("emailId", "bob@gmail.com").findUnique();
-        //assertNotNull(bob);
-        //assertEquals("secret", bob.accDetails.password);
+    	Ebean.save((List) Yaml.load("test-data.yml"));
+        
         AccountDetails temp = AccountDetails.find.where().eq("emailId", "bob@gmail.com").findUnique();
         assertNotNull(temp);
         assertEquals(temp.password, "secret");

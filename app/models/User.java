@@ -13,10 +13,9 @@ public class User extends Model
 	@Id
 	@Constraints.Required
     @Formats.NonEmpty
-	String userId;
+	public String userId;
 
 //    @Constraints.Required
-//    @OneToOne
     @OneToOne(cascade=CascadeType.PERSIST)
     AccountDetails accDetails;
 
@@ -73,6 +72,16 @@ public class User extends Model
     	User user = new User(email, email, password);
     	user.save();
     	return user;
+    }
+
+    public static void create(User user) 
+    {
+        user.save();
+    }
+
+    public static List<User> all() 
+    {
+      return find.all();
     }
     
 }
