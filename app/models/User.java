@@ -43,9 +43,7 @@ public class User extends Model
 	// -------- Queries
 	public static Model.Finder<String,User> find = new Model.Finder<String,User>(String.class, User.class);
 
-	/*
-     * Retrieve a User from email.
-     */
+	// Retrive user by details
     public static User findByEmail(String email) 
     {
     	String tempId = AccountDetails.findByEmail(email).userId;
@@ -53,20 +51,20 @@ public class User extends Model
         return find.ref(tempId);
     }
 
-    /*
-     * Authenticate a User.
-     */
+    // Authenticate the user details
     public static User authenticate(String email, String password) 
     {
-    	String tempId = AccountDetails.authenticate(email, password).userId;
+    	AccountDetails temp = AccountDetails.authenticate(email, password);
     	
-        return find.ref(tempId);
+        if (temp != null)
+            return find.ref(temp.userId);
+        else
+            return null;
     }
 
 //**------------ No user_id is being taken 
-    /*
-     * Create a new User
-     */
+
+    //creates a new user
     public static User create(String email, String password)
     {
     	User user = new User(email, email, password);
@@ -82,6 +80,14 @@ public class User extends Model
     public static List<User> all() 
     {
       return find.all();
+    }
+
+    public static void remove(String id) {
+      find.ref(id).delete();
+    }
+
+    public String toString() {
+        return "User(" + userId + ")";
     }
     
 }

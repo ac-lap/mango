@@ -52,7 +52,7 @@ public class AccountDetails extends Model
     public static AccountDetails authenticate(String email, String password) 
     {    	
         return find.where()
-            .eq("email", email)
+            .eq("emailId", email)
             .eq("password", password)
             .findUnique();
     }

@@ -1,0 +1,34 @@
+@(form: Form[Application.Login])
+
+<html>
+    <head>
+        <title>LiBiL</title>
+    </head>
+    <body>
+        <header>
+            <a href="@routes.Application.index" id="logo"><span>Libil</span></a>
+        </header>
+
+        @helper.form(routes.Application.authenticate) {
+            
+            <h1>Sign in</h1>
+
+            <p class="error">
+                @form("error_msg").value
+            </p>
+
+            
+            <p>
+                <input type="email" name="email" placeholder="Email" value="@form("email").value">
+            </p>
+            <p>
+                <input type="password" name="password" placeholder="Password">
+            </p>
+            <p>
+                <button type="submit">Login</button>
+            </p>
+            
+        }
+    
+    </body>
+</html>
