@@ -10,6 +10,7 @@ import views.html.*;
 
 public class Application extends Controller {
 
+    @Security.Authenticated(Secured.class)
     public static Result index() 
     {
         return ok(index.render("Your new application is ready."));
@@ -65,6 +66,16 @@ public class Application extends Controller {
             }
         }
 
+    /*
+     * Logout
+    */
+        public static Result logout() {
+            session().clear();
+            flash("success", "You've been logged out");
+            return redirect(
+                routes.Application.login()
+            );
+        }
 
     /*
      * Signup page actions

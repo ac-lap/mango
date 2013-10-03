@@ -1,7 +1,26 @@
 @(message: String)
 
-@main("Welcome to Play") {
+<!DOCTYPE html>
 
-    @play20.welcome(message, style = "Java")
+<html>
+    <head>
+        <title>Libil</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+    </head>
 
-}
+    <header>
+	    <a href="@routes.Application.index" id="logo"><span>Zen</span>tasks</a>
+	    <dl id="user">
+	        <dt>User :: @request.username()</dt>
+	        <dd>
+	            <a href="@routes.Application.logout()">Logout</a>
+	        </dd>
+	    </dl>
+	</header>
+
+    <body>
+        @message
+    </body>
+</html>
