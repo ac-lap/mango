@@ -14,6 +14,12 @@
             
             <h1>Sign up</h1>
 
+            @if(flash.contains("error")) {
+                <p class="error">
+                    @flash.get("error")
+                </p>
+            }
+
             <p>
                 <input type="email" name="email" placeholder="Email">
             </p>

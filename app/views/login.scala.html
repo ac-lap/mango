@@ -13,9 +13,11 @@
             
             <h1>Sign in</h1>
 
-            <p class="error">
-                @form("error_msg").value
-            </p>
+            @if(flash.contains("error")) {
+                <p class="error">
+                    @flash.get("error")
+                </p>
+            }
 
             @if(flash.contains("success")) {
                 <p class="success">

@@ -15,13 +15,13 @@ public class User extends Model
     @Formats.NonEmpty
 	public String userId;
 
-//    @Constraints.Required
-    @OneToOne(cascade=CascadeType.PERSIST)
     AccountDetails accDetails;
 
+    Credit credit;
+
+    //book currently being read by the usser
+    OpenBook curBook;
 /*
-	//book currently being read by the usser
-	OpenBook current;
 
 	//books bookmarked by the user
 	Bookmark bookmark;
@@ -37,19 +37,20 @@ public class User extends Model
 	public User(String uId, String email, String password) 
 	{
 		this.userId = uId;
-		this.accDetails = new AccountDetails(uId,email,password);
+		this.accDetails = AccountDetails.create(uId,email,password);
+        this.credit = Credit.create(uId);
+    }
+
+    //creates a new user
+    public static User create(String email, String password)
+    {
+        User user = new User(email, email, password);
+        user.save();
+        return user;
     }
 
 	// -------- Queries
 	public static Model.Finder<String,User> find = new Model.Finder<String,User>(String.class, User.class);
-
-	// Retrive user by details
-    public static User findByEmail(String email) 
-    {
-    	String tempId = AccountDetails.findByEmail(email).userId;
-
-        return find.ref(tempId);
-    }
 
     // Authenticate the user details
     public static User authenticate(String email, String password) 
@@ -62,27 +63,17 @@ public class User extends Model
             return null;
     }
 
-//**------------ No user_id is being taken 
-
-    //creates a new user
-    public static User create(String email, String password)
+    public static User checkExists(String uId)
     {
-    	User user = new User(email, email, password);
-    	user.save();
-    	return user;
+        return find.where()
+            .eq("userId", uId)
+            .findUnique();
     }
+//**------------ No user_id is being taken 
 
     public static List<User> all() 
     {
       return find.all();
-    }
-
-    public static void remove(String id) {
-      find.ref(id).delete();
-    }
-
-    public String toString() {
-        return "User(" + userId + ")";
     }
     
 }

@@ -25,18 +25,15 @@ public class Application extends Controller {
     	    public String email;
     	    public String password;
 
-            public String error_msg;
-
             public Login()
             {
                 ;
             }
 
-            public Login(String email, String password, String error)
+            public Login(String email, String password)
             {
                 this.email=email;
                 this.password=password;
-                this.error_msg=error;
             }
     	}
 
@@ -53,7 +50,8 @@ public class Application extends Controller {
 
             if (User.authenticate(loginForm.get().email,loginForm.get().password) == null)
             {
-                loginForm = loginForm.fill(new Login(loginForm.get().email, loginForm.get().password,"Error !!"));
+                loginForm = loginForm.fill(new Login(loginForm.get().email, loginForm.get().password));
+                flash("error", "Bad Username or password");
                 return badRequest(login.render(loginForm));
             } 
             else 
@@ -103,19 +101,22 @@ public class Application extends Controller {
             } 
             else 
             {
-                User.create(signForm.get().email, signForm.get().password);
-                session().clear();
-                session("email", signForm.get().email);
-                return redirect(
-                    routes.Application.index()
-                );
+                if (User.checkExists(signForm.get().email) == null)
+                {
+                    User.create(signForm.get().email, signForm.get().password);
+                    session().clear();
+                    session("email", signForm.get().email);
+                    return redirect(
+                        routes.Application.index()
+                    );
+                }
+                else
+                {
+                    flash("error", "User already exists");
+                    return redirect(routes.Application.signup());
+                }
             }
 
     	}
-
-    	public static Result deleteUser(String id) {
-       		User.remove(id);
-       		return redirect(routes.Application.signup());
-      	}
 
 }

@@ -32,6 +32,13 @@ public class AccountDetails extends Model
         this.password = password;
     }
 
+    public static AccountDetails create(String uId, String email, String password)
+    {
+        AccountDetails accDet = new AccountDetails(uId,email,password);
+        accDet.save();
+        return accDet;
+    }
+
 
     // -------- Queries
 	public static Model.Finder<String,AccountDetails> find = 
