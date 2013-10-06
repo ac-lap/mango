@@ -119,4 +119,15 @@ public class Application extends Controller {
 
     	}
 
+    	public static Result deleteUser(String id) {
+       		User.remove(id);
+       		return redirect(routes.Application.signup());
+      	}
+    /*
+     * 	Readeer Actions Implementations
+     */
+    	public static Result reader(){
+    		return ok(reader.render());
+    	}
+
 }
