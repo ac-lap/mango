@@ -31,6 +31,7 @@ public class Credit extends Model
 	public int incCoin(int val)
 	{
 		coin+=val;
+		save();
 		return coin;
 	}
 
@@ -41,6 +42,7 @@ public class Credit extends Model
 		else
 		{
 			coin-=val;
+			save();
 			return true;
 		}
 	}
@@ -50,5 +52,13 @@ public class Credit extends Model
 		Credit credit = new Credit(uId);
 		credit.save();
 		return credit;
+	}
+
+	// -------- Queries
+	public static Model.Finder<String,Credit> find = new Model.Finder<String,Credit>(String.class, Credit.class);
+
+	public static Credit findByUserId(String uId)
+	{
+		return find.where().eq("userId", uId).findUnique();
 	}
 }

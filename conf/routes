@@ -19,8 +19,6 @@ GET     /logout                     controllers.Application.logout()
 # Signup
 GET		/signup 					controllers.Application.signup()
 POST    /signup		                controllers.Application.newUser()
-POST    /signup		                controllers.Application.newUser()
-POST    /signup/:id/delete       	controllers.Application.deleteUser(id: String)
 
 # Reader
 GET		/reader						controllers.Application.reader()

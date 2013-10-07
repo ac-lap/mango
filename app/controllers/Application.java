@@ -13,7 +13,7 @@ public class Application extends Controller {
     @Security.Authenticated(Secured.class)
     public static Result index() 
     {
-        return ok(index.render("Your new application is ready."));
+        return ok(index.render(User.find.where().eq("userId",session().get("userId")).findUnique()));
     }
 
     /*
@@ -57,7 +57,7 @@ public class Application extends Controller {
             else 
             {
                 session().clear();
-                session("email", loginForm.get().email);
+                session("userId", loginForm.get().email);
                 return redirect(
                     routes.Application.index()
                 );
@@ -105,7 +105,7 @@ public class Application extends Controller {
                 {
                     User.create(signForm.get().email, signForm.get().password);
                     session().clear();
-                    session("email", signForm.get().email);
+                    session("userId", signForm.get().email);
                     return redirect(
                         routes.Application.index()
                     );
@@ -119,15 +119,16 @@ public class Application extends Controller {
 
     	}
 
-    	public static Result deleteUser(String id) {
-       		User.remove(id);
-       		return redirect(routes.Application.signup());
-      	}
     /*
      * 	Readeer Actions Implementations
-     */
+    */
     	public static Result reader(){
     		return ok(reader.render());
     	}
+
+
+    /*
+     *  Test of credits
+    */
 
 }
