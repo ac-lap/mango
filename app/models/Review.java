@@ -14,6 +14,8 @@ public class Review extends Model
 	@Id 
 	String bookId;
 
+	String userId;
+
 	String review;
 
 	Date reviewDate;
@@ -27,6 +29,5 @@ public class Review extends Model
 		//this.reviewDate=sysDate;
 		this.rating=rating;
 	}
-
 
 }

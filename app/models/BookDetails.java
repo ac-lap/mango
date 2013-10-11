@@ -38,19 +38,19 @@ public class BookDetails extends Model
     public static Model.Finder<String,BookDetails> find = 
              new Model.Finder<String,BookDetails>(String.class, BookDetails.class);
 
-    public static BookDetails findByTitle(String title) {
+    public static BookDetails findByTitle(String title) 
+    {
     	
        return find.where().eq("title", title).findUnique();
        
     }
 
-    public static BookDetails findByAuthor(String author) {
+    public static BookDetails findByAuthor(String author) 
+    {
     	
        return find.where().eq("authors", author).findUnique();
        
     }
-
-
 
 	public static BookDetails create(String bookId,String title,int num)
 	{
@@ -59,8 +59,4 @@ public class BookDetails extends Model
 		return bookdetails;
 	}
 
-	public static void create(BookDetails bookdetails)
-	{
-		bookdetails.save();
-	}
 }

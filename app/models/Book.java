@@ -13,27 +13,25 @@ public class Book extends Model
 {
 	@Id
 	String bookId;
-    @OneToOne(cascade=CascadeType.PERSIST)
+
 	BookDetails bookDetails;
-  //  @OneToOne(cascade=CascadeType.PERSIST)
-//	Tag tag;
-    @OneToOne(cascade=CascadeType.PERSIST)
+
 	BookReview bookReview;
+
 	int rate;
 
 
-public Book(String bookId,String title,int num,int rate)
-{
-	this.bookId=bookId;
-	this.rate=rate;
-	this.bookDetails=new BookDetails(bookId,title,num);
-}
+    public Book(String bookId,String title,int num,int rate)
+    {
+    	this.bookId=bookId;
+    	this.rate=rate;
+    	this.bookDetails= BookDetails.create(bookId,title,num);
+    }
 
-public static Model.Finder<String,Book> find = 
-          new Model.Finder<String,Book>(String.class, Book.class);
+    public static Model.Finder<String,Book> find = new Model.Finder<String,Book>(String.class, Book.class);
 
-public static Book findByTitle(String title) {
-    	
+    public static Book findByTitle(String title) 
+    { 	
         BookDetails tempBook= BookDetails.findByTitle(title);
         if(tempBook!=null)
         {
@@ -42,10 +40,10 @@ public static Book findByTitle(String title) {
         }
         else
         	return null;
-       }
+    }
 
-    public static Book findByAuthor(String author) {
-    	
+    public static Book findByAuthor(String author) 
+    {	
         BookDetails tempBook= BookDetails.findByAuthor(author);
         if(tempBook!=null)
         {
@@ -54,18 +52,13 @@ public static Book findByTitle(String title) {
         }
         else
         	return null;
-        }
+    }
 
-public static Book create(String bookId,String title,int num,int rate)
-{
-	Book book=new Book(bookId,title,num,rate);
-	book.save();
-	return book;
-}
-
-public static void create(Book book)
-{
-	book.save();
-}
+    public static Book create(String bookId,String title,int num,int rate)
+    {
+    	Book book=new Book(bookId,title,num,rate);
+    	book.save();
+    	return book;
+    }
 
 }

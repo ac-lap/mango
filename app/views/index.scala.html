@@ -7,20 +7,6 @@
         <title>Libil</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script>
-            function updateCoin()
-            {
-                @Credit.findByUserId(user.userId).decCoin(50);
-                x=document.getElementById("coin");  // Find the element
-                x.innerHTML="Coins ::: "+@Credit.findByUserId(user.userId).getCoin();
-
-            }
-        </script>
-        <script>
-        	function helloWorld(){
-        		console.log("Hello World");
-        	}
-        </script>
     </head>
 
     <body>
@@ -32,13 +18,9 @@
     	        <dd>
     	            <a href="@routes.Application.logout()">Logout</a>
     	        </dd>
-                <dt id="coin">Coins :: @Credit.findByUserId(user.userId).getCoin()</dt>
+
     	    </dl>
     	</header>
 
-
-        <button type="button" onclick="updateCoin()">Take Book, cost = 50 per hour</button>
-            "Welcome!!"
-        <button type="button" onclick="helloWorld()">Hello World</button>
     </body>
 </html>
