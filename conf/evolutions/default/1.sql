@@ -27,6 +27,11 @@ create table book_details (
   constraint pk_book_details primary key (book_id))
 ;
 
+create table book_id (
+  end_id                    varchar(255) not null,
+  constraint pk_book_id primary key (end_id))
+;
+
 create table book_review (
   book_id                   varchar(255) not null,
   avg_rating                double,
@@ -74,6 +79,8 @@ drop table account_details;
 drop table book;
 
 drop table book_details;
+
+drop table book_id;
 
 drop table book_review;
 

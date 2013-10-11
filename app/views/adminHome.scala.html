@@ -1,4 +1,4 @@
-@(user: String)
+@(form: Form[Application.BookDetail])
 
 <!DOCTYPE html>
 
@@ -14,8 +14,8 @@
         <header>
     	    <a href="@routes.Application.index" id="logo"><span>Zen</span>tasks</a>
     	    <dl id="user">
-    	        <dt>Welcome Admin @user</dt>
-                
+    	        <dt>Welcome Admin @session().get("adminId")</dt>
+
     	        <dd>
     	            <a href="@routes.Application.logout()">Logout</a>
     	        </dd>
@@ -23,5 +23,6 @@
     	    </dl>
     	</header>
 
+        @views.html.addBook(form)
     </body>
 </html>

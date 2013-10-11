@@ -1,0 +1,33 @@
+@(bForm: Form[Application.BookDetail])
+
+
+        @helper.form(routes.Application.addBook) {
+            
+            <h1>Add Book</h1>
+
+            @if(flash.contains("error")) {
+                <p class="error">
+                    @flash.get("error")
+                </p>
+            }
+
+            @if(flash.contains("success")) {
+                <p class="success">
+                    @flash.get("success")
+                </p>
+            }
+            
+            <p>
+                <input type="text" name="title" placeholder="Title">
+            </p>
+            <p>
+                <input type="number" name="num" placeholder="Num Pages">
+            </p>
+            <p>
+                <input type="number" name="rate" placeholder="Rate">
+            </p>
+            <p>
+                <button type="submit">Add Book</button>
+            </p>
+            
+        }

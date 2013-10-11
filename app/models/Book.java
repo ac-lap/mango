@@ -54,8 +54,10 @@ public class Book extends Model
         	return null;
     }
 
-    public static Book create(String bookId,String title,int num,int rate)
+    public static Book create(String title,int num,int rate)
     {
+        String bookId = BookId.getBookId();
+        
     	Book book=new Book(bookId,title,num,rate);
     	book.save();
     	return book;

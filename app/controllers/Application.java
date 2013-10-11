@@ -128,7 +128,7 @@ public class Application extends Controller {
 
 
     /*
-     *  Admin Signup Page
+     *  Admin Page
     */
         public static Result adminLogin()
         {
@@ -142,9 +142,9 @@ public class Application extends Controller {
             if (loginForm.get().email.equals("anubhav") && loginForm.get().password.equals("password"))
             {
                 session().clear();
-                session("userId", loginForm.get().email);
+                session("adminId", loginForm.get().email);
                 
-                return ok(adminHome.render(loginForm.get().email));
+                return ok(adminHome.render(form(BookDetail.class)));
             }
             else
             {
@@ -152,6 +152,36 @@ public class Application extends Controller {
                 flash("error", "Bad Username or password");
                 return badRequest(adminLogin.render(loginForm));
             } 
+        }
+
+        public static class BookDetail
+        {
+            public String title;
+            public int num;
+            public int rate;
+
+            public BookDetail()
+            {
+                ;
+            }
+
+            public BookDetail(String title, int num, int rate)
+            {
+                this.title=title;
+                this.num=num;
+                this.rate=rate;
+            }
+        }
+
+        public static Result addBook()
+        {
+            Form<BookDetail> form = form(BookDetail.class).bindFromRequest();
+
+            Book.create(form.get().title, form.get().num, form.get().rate);
+
+            flash("success", "Book Added Successfully");
+            
+            return ok(adminHome.render(form(BookDetail.class)));
         }
 
 }
