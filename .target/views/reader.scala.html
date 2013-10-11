@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<!-- Le Css -->
+		<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/monocore.css")">
+		<!-- Le Javascript -->
+		<script src="@routes.Assets.at("javascripts/monocore.js")" type="text/javascript"></script>
+	</head>
+	<style>
+		#reader{width:1000px; height:800px; border:1px solid #000;}
+	</style>
+	
+	<body>
+		<div id="reader">
+			<p> Hello World </p>
+		</div>
+		
+		<script type="text/javascript">
+	
+		var bookData = {
+			getComponents: function () {
+				return [
+					'content1.html',
+					'content2.html'
+					];
+			},
+			getContents: function () {
+				return [
+					{title: "Content Title 1", src: 'content1.html'},
+					{title: "Content Title 2", src: 'content2.html'}
+					]
+			},
+			getComponent: function (componentId) {
+				return {url:componentId};
+			},
+			getMetaData: function(key) {
+				return {
+					title: "Test document",
+					creator: "Aron Woost"
+					}[key];
+			}
+		}
+			
+		Monocle.Events.listen(
+			window,
+			'load',
+			function () {
+					window.reader = Monocle.Reader('reader', bookData);
+				}
+			);
+		</script>
+	</body>
+</html>
