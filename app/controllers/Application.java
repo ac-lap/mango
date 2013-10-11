@@ -128,7 +128,30 @@ public class Application extends Controller {
 
 
     /*
-     *  Test of credits
+     *  Admin Signup Page
     */
+        public static Result adminLogin()
+        {
+            return ok(adminLogin.render(form(Login.class)));
+        }
+
+        public static Result adminAuthenticate() 
+        {
+            Form<Login> loginForm = form(Login.class).bindFromRequest();
+            
+            if (loginForm.get().email.equals("anubhav") && loginForm.get().password.equals("password"))
+            {
+                session().clear();
+                session("userId", loginForm.get().email);
+                
+                return ok(adminHome.render(loginForm.get().email));
+            }
+            else
+            {
+                loginForm = loginForm.fill(new Login(loginForm.get().email, loginForm.get().password));
+                flash("error", "Bad Username or password");
+                return badRequest(adminLogin.render(loginForm));
+            } 
+        }
 
 }

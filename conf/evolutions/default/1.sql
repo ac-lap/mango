@@ -63,17 +63,7 @@ create table user (
 ;
 
 
-create table book_review_review (
-  book_review_book_id            varchar(255) not null,
-  review_book_id                 varchar(255) not null,
-  constraint pk_book_review_review primary key (book_review_book_id, review_book_id))
-;
 
-
-
-alter table book_review_review add constraint fk_book_review_review_book_review_01 foreign key (book_review_book_id) references book_review (book_id) on delete restrict on update restrict;
-
-alter table book_review_review add constraint fk_book_review_review_review_02 foreign key (review_book_id) references review (book_id) on delete restrict on update restrict;
 
 # --- !Downs
 
@@ -86,8 +76,6 @@ drop table book;
 drop table book_details;
 
 drop table book_review;
-
-drop table book_review_review;
 
 drop table credit;
 

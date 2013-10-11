@@ -9,24 +9,18 @@
             <a href="@routes.Application.index" id="logo"><span>Libil</span></a>
         </header>
 
-        @helper.form(routes.Application.authenticate) {
-            
-            <h1>Sign in</h1>
+        <h2>I said only Admins</h2>
+        <h4>try anubhav and password </h4>
+        @helper.form(routes.Application.adminAuthenticate) {
 
             @if(flash.contains("error")) {
                 <p class="error">
                     @flash.get("error")
                 </p>
             }
-
-            @if(flash.contains("success")) {
-                <p class="success">
-                    @flash.get("success")
-                </p>
-            }
             
             <p>
-                <input type="email" name="email" placeholder="Email" value="@form("email").value">
+                <input type="text" name="email" placeholder="Username" value="@form("email").value">
             </p>
             <p>
                 <input type="password" name="password" placeholder="Password">
@@ -36,8 +30,6 @@
             </p>
             
         }
-                    <a href="@routes.Application.signup()">Signup</a>
-                    <a href="@routes.Application.adminLogin()">Admin</a>
-    
+
     </body>
 </html>

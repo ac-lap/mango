@@ -1,0 +1,27 @@
+@(user: String)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Libil</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    </head>
+
+    <body>
+
+        <header>
+    	    <a href="@routes.Application.index" id="logo"><span>Zen</span>tasks</a>
+    	    <dl id="user">
+    	        <dt>Welcome Admin @user</dt>
+                
+    	        <dd>
+    	            <a href="@routes.Application.logout()">Logout</a>
+    	        </dd>
+
+    	    </dl>
+    	</header>
+
+    </body>
+</html>

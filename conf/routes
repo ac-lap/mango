@@ -23,3 +23,10 @@ POST    /signup		                controllers.Application.newUser()
 # Reader
 GET		/reader						controllers.Application.reader()
 
+# Admin Page
+GET		/alr						controllers.Application.adminLogin()
+POST	/alr						controllers.Application.adminAuthenticate()
+# GET		/alr/home 					controllers.Application.adminHome(username: String ?= null)
+
+
+
