@@ -130,6 +130,12 @@ public class Application extends Controller {
     /*
      *  Admin Page
     */
+        @Security.Authenticated(SecuredAdmin.class)
+        public static Result adminHome()
+        {
+            return ok(adminHome.render());
+        }
+
         public static Result adminLogin()
         {
             return ok(adminLogin.render(form(Login.class)));
@@ -144,7 +150,9 @@ public class Application extends Controller {
                 session().clear();
                 session("adminId", loginForm.get().email);
                 
-                return ok(adminHome.render(form(BookDetail.class)));
+                return redirect(
+                    routes.Application.adminHome()
+                );
             }
             else
             {
@@ -173,6 +181,13 @@ public class Application extends Controller {
             }
         }
 
+        @Security.Authenticated(SecuredAdmin.class)
+        public static Result addBookPage()
+        {
+            return ok(addBook.render(form(BookDetail.class)));
+        }
+
+        @Security.Authenticated(SecuredAdmin.class)
         public static Result addBook()
         {
             Form<BookDetail> form = form(BookDetail.class).bindFromRequest();
@@ -181,7 +196,7 @@ public class Application extends Controller {
 
             flash("success", "Book Added Successfully");
             
-            return ok(adminHome.render(form(BookDetail.class)));
+            return ok(addBook.render(form(BookDetail.class)));
         }
 
 }

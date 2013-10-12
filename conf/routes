@@ -24,9 +24,11 @@ POST    /signup		                controllers.Application.newUser()
 GET		/reader						controllers.Application.reader()
 
 # Admin Page
-GET		/alr						controllers.Application.adminLogin()
-POST	/alr						controllers.Application.adminAuthenticate()
-POST	/alr/add_book				controllers.Application.addBook()				
+GET		/alr						controllers.Application.adminHome()
+GET		/alr/login					controllers.Application.adminLogin()
+POST	/alr/login					controllers.Application.adminAuthenticate()
+GET		/alr/add_book				controllers.Application.addBookPage()				
+POST	/alr/add_book				controllers.Application.addBook()
 
 
 
