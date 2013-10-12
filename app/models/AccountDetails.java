@@ -1,6 +1,8 @@
 package models;
 
 import java.util.*;
+import java.security.*;
+import java.math.*;
 
 import javax.persistence.*;
 
@@ -29,7 +31,7 @@ public class AccountDetails extends Model
     {
         this.userId = uId;
         this.emailId = email;
-        this.password = password;
+        this.password = Security.encryptPassword(password);
     }
 
     public static AccountDetails create(String uId, String email, String password)
@@ -60,7 +62,7 @@ public class AccountDetails extends Model
     {    	
         return find.where()
             .eq("emailId", email)
-            .eq("password", password)
+            .eq("password", Security.encryptPassword(password))
             .findUnique();
     }
     
